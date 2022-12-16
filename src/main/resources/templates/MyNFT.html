@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    
+        <head>
+    <title>Bootstrap NavBar Example</title>
+    <meta charset="utf-8" />
+    <!-- Include bootstrap, CSS and jQuery CDN -->
+    <meta name="viewport" content=
+        "width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href=
+"https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>
+    <script src=
+"https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js">
+    </script>
+</head>
+    
+    <body>
+    <!-- Add <nav> tag with .navbar and
+         .navbar-default class -->
+    <nav class="navbar navbar-default">
+  
+        <!-- Add navbar content -->
+        <div class="container-fluid">
+  
+            <!-- Include .navbar-header class 
+                 in <div>  (optional)-->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="Landing">
+                    NFT Marketplace
+                </a>
+            </div>
+  
+            <!-- Include navbar list -->
+            <ul class="nav navbar-nav">
+                <li><a href="/test">
+                    Home
+                </a></li>
+                <li><a href="/wallet">Wallet</a></li>
+                <li><a href="nft/viewAll">My NFTs</a></li>
+                <li><a href="/createNFT">Create NFT</a></li>
+                <li><a href="/Buy">Buy NFT</a></li>
+                <li><a href="/logout">Log Out</a></li>
+
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Sample page content
+    <div class="container">
+        
+    </div> -->
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="text-center">NFTs on SALE</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-5"></div>
+        <div class="col-sm-2">
+            <a href="CurrentListedNFT"> 
+				<button type="button" class="btn btn-primary vertical-center">Currently on SALE</button>
+			</a>
+			<a href="OlderListing"> 
+				<button type="button" class="btn btn-primary vertical-center" >Older Listings</button>
+			</a>
+</div>
+        <div class="col-sm-5"></div>
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="text-center">All Availble NFTs</h1>
+        </div>
+    </div>
+
+    <!-- NFT selling page -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 " th:each="oneNft: ${nfts}">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">NftID:<span th:text="${oneNft.nftId}"></span></div>
+                    <div class="panel-body
+                        text-center">
+                        <img src="https://www.w3schools.com/bootstrap/paris.jpg" class="img-responsive" style="width:100%" alt="Image">
+                    </div>
+					<div class="panel-footer">
+						<p th:text="${oneNft.description}" />
+						<button class="btn btn-primary" data-toggle="modal"
+							data-target="#depositForm">Sell</button>
+							
+							
+							
+						<div class="modal fade" id="depositForm" tabindex="-1"
+							role="dialog" aria-labelledby="membershipFormLabel"
+							aria-hidden="true">
+							<div class="modal-dialog" role="document">
+
+								<div class="modal-content">
+									<div class="modal-header">
+
+										<h3 class="modal-title" id="membershipFormLabel">Deposit</h3>
+
+										<button type="button" class="close" data-dismiss="modal"
+											aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+
+									<div class="modal-body">
+										<form class="membership-form webform" th:action="@{/nft/sell}" th:object="${nfti}"
+											role="form" method="POST">
+											
+											<!-- <input type="hidden" id="nftId" th:field="*{nftId}" name="nftId" value="1"> -->
+
+											<label for="cars">Choose the type:</label> <select id="cars"
+												name="cars">
+												<option value="volvo">BTC</option>
+												<option value="saab">ETH</option>
+											</select> 
+											<input type="text" th:field = "*{listPrice}" class="form-control"  name="amount"
+												placeholder="amount">
+											<button type="submit" class="form-control" id="submit-button"
+												name="submit">Deposit</button>
+										</form>
+									</div>
+
+									<div class="modal-footer"></div>
+
+								</div>
+							</div>
+						</div>
+						
+						
+					</div>
+				</div>
+            </div>
+       </div>
+       </div> 
+       
+       
+       
+       <!-- <div class="modal fade" id="depositForm" tabindex="-1" role="dialog" aria-labelledby="membershipFormLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+  
+          <div class="modal-content">
+            <div class="modal-header">
+  
+              <h3 class="modal-title" id="membershipFormLabel">Sell</h3>
+  
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+  
+            <div class="modal-body">
+                <form class="membership-form webform" th:action="@{/sell}" th:object="${nft}" role="form" method="POST">
+                    
+                    <input type="hidden" id="nftId" th:field="nftId" name="nftId" value="3487">
+                    
+                    <label for="cars">Choose the type:</label>
+                    <select id="cars" th:field="*{currencyType}" name="cars">
+                        <option value="BTC">BTC</option>
+                        <option value="ETH">ETH</option>
+                   </select>
+
+                    <input type="text" class="form-control" th:field="*{listPrice}" name="amount" placeholder="amount">
+                    <button type="submit" class="form-control" id="submit-button" name="submit">Sell</button>
+                </form>
+            </div>
+  
+            <div class="modal-footer"></div>
+  
+          </div>
+        </div>
+    </div> -->
+    
+    <!-- <form th:action="@{/process_register}" th:object="${user}"
+            method="post" style="max-width: 600px; margin: 0 auto;">
+        <div class="m-3">
+             <div class="form-group row">
+                <label class="col-4 col-form-label">Email: </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{username}" class="form-control"
+                            required minlength="2" maxlength="40"/>
+                </div>
+            </div>
+             <div class="form-group row">
+                <label class="col-4 col-form-label">User name: </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{nickname}" class="form-control"
+                            required minlength="2" maxlength="40"/>
+                </div>
+            </div>             
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Password: </label>
+                <div class="col-8">
+                    <input type="password" th:field="*{password}" class="form-control"
+                            required minlength="6" maxlength="10"/>
+                </div>
+            </div>
+             
+            <div>
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+            </div>
+        </div>
+        </form> -->
+
+    <!-- <div>
+    	
+    	<p th:text="${nft.nftId}"/>
+    	<p th:text="${nft.description}"/>
+    	<p th:text="${nft.assetUrl}"/>
+    </div> -->
+    
+    <div>
+    	<p>nftz page</p>
+    </div>
+    
+    
+    
+
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    
+        <head>
+    <title>Bootstrap NavBar Example</title>
+    <meta charset="utf-8" />
+    <!-- Include bootstrap, CSS and jQuery CDN -->
+    <meta name="viewport" content=
+        "width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href=
+"https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>
+    <script src=
+"https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js">
+    </script>
+<style>
+
+/* Dropdown Button */
+.dropbtn {
+  background-color: #3498DB;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+
+</style>
+</head>
+    
+    <body>
+    <!-- Add <nav> tag with .navbar and
+         .navbar-default class -->
+    <nav class="navbar navbar-default">
+  
+        <!-- Add navbar content -->
+        <div class="container-fluid">
+  
+            <!-- Include .navbar-header class 
+                 in <div>  (optional)-->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/test">
+                    NFT Marketplace
+                </a>
+            </div>
+  
+            <!-- Include navbar list -->
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/test">
+                    Home
+                </a></li>
+                <li><a href="/wallet">Wallet</a></li>
+                <li><a href="nft/viewAll">My NFTs</a></li>
+                <li><a href="/createNFT">Create NFT</a></li>
+                <li><a href="/Buy">Buy NFT</a></li>
+                <li><a href="/logout">Log Out</a></li>
+                <!-- <a href="#">Log Out</a> -->
+                
+
+            </ul>
+        </div>
+    </nav>
+
+ <div class="row content" style=" margin:auto; text-align: center; width:50%">
+    <br>
+    
+    <div class="col-sm-12"> 
+      <div class="well">
+        <h4>Welcome to your NFT Dashboard</h4>
+        <p>Here you can view your personal transaction stats </p>
+      </div>
+      <div class="row">
+        <div class="col-sm-12" style="width:100%;">
+          <div class="well">
+            <h4>Display Transaction Period</h4>
+<!--             <p>1 Million</p>  -->
+			<div class="dropdown">
+			  <button onclick="periodFunction()" class="dropbtn">Select Period &darr;</button>
+			  <div id="myDropdown1" class="dropdown-content">
+			    <a href="#">24 Hours</a>
+			    <a href="#">Last Week</a>
+			    <a href="#">Last Month</a>
+			  </div>
+			</div>
+			<div class="dropdown">
+			  <button onclick="currencyFunction()" class="dropbtn">Select Currency &darr;</button>
+			  <div id="myDropdown2" class="dropdown-content">
+			    <a href="#">ETH</a>
+			    <a href="#">BTC</a>
+			    <a href="#">All</a>
+			  </div>
+			</div>
+          </div>
+        </div>
+
+
+
+      </div>
+      <div class="row">
+        <div class="col-sm-12" style="width:100%;overflow:hidden;">
+          <div class="well">
+            <p th:text="*{transaction}" name="sourceText"></p> 
+          </div>
+        </div>
+      </div>
+<!--       <div class="row">
+        <div class="col-sm-8">
+          <div class="well">
+            <p>Text</p> 
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="well">
+            <p>Text</p> 
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+
+
+
+    
+    
+
+</body>
+
+<script>
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function periodFunction() {
+  document.getElementById("myDropdown1").classList.toggle("show");
+}
+
+function currencyFunction(){
+	document.getElementById("myDropdown2").classList.toggle("show");	
+}
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+
+
+</script>
+</html>

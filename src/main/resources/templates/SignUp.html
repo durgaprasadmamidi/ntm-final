@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Sign Up - NTM</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container text-center">
+        <div>
+            <h1>User Registration - Sign Up</h1>
+        </div>
+	    <div th:if="${error}">
+	        <p class="text-danger">User email/nickname already exists.</p>
+	    </div>
+        <form th:action="@{/process_register}" th:object="${user}"
+            method="post" style="max-width: 600px; margin: 0 auto;">
+
+        <div class="m-3">
+             <div class="form-group row">
+                <label class="col-4 col-form-label">Email: </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{username}" class="form-control"
+                            required minlength="2" maxlength="40"/>
+                </div>
+            </div>
+             <div class="form-group row">
+                <label class="col-4 col-form-label">Nick name: </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{nickName}" class="form-control"
+                            required minlength="2" maxlength="40"/>
+                </div>
+            </div>           
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Password: </label>
+                <div class="col-8">
+                    <input type="password" th:field="*{password}" class="form-control"
+                            required minlength="6" maxlength="10"/>
+                </div>
+            </div>
+             
+            <div>
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+            </div>
+        </div>       
+        </form>
+  <br>
+<div><p>OR</p></div>
+<div>
+<!-- <h4><a th:href="@{/oauth2/authorization/google}">Login with Google</a></h4> -->    
+    <a class="btn btn-outline-dark" th:href="@{/oauth2/authorization/google}" role="button" style="text-transform:none">
+      <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+      Sign In with Google
+    </a>
+</div>
+    </div>
+
+
+
+
+
+<!-- Minified CSS and JS -->
+<link   rel="stylesheet" 
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+        crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
+        crossorigin="anonymous">
+</script>
+</body>
+</html>

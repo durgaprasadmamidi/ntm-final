@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    
+        <head>
+    <title>Bootstrap NavBar Example</title>
+    <meta charset="utf-8" />
+    <!-- Include bootstrap, CSS and jQuery CDN -->
+    <meta name="viewport" content=
+        "width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href=
+"https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>
+    <script src=
+"https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js">
+    </script>
+</head>
+    
+    <body>
+    <!-- Add <nav> tag with .navbar and
+         .navbar-default class -->
+    <nav class="navbar navbar-default">
+  
+        <!-- Add navbar content -->
+        <div class="container-fluid">
+  
+            <!-- Include .navbar-header class 
+                 in <div>  (optional)-->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="Landing">
+                    NFT Marketplace
+                </a>
+            </div>
+  
+            <!-- Include navbar list -->
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/test">
+                    Home
+                </a></li>
+                <li><a href="/wallet">Wallet</a></li>
+                <li><a href="nft/viewAll">My NFTs</a></li>
+                <li><a href="/createNFT">Create NFT</a></li>
+                <li><a href="/Buy">Buy NFT</a></li>
+                <li><a href="/logout">Log Out</a></li>
+
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Sample page content
+    <div class="container">
+        
+    </div> -->
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="text-center">Currently Listed NFTs</h1>
+        </div>
+    </div>
+
+
+    <!-- NFT selling page -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 ">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">NFT 1</div>
+                    <div class="panel-body
+                        text-center">
+                        <img src="https://www.w3schools.com/bootstrap/paris.jpg" class="img-responsive" style="width:100%" alt="Image">
+                    </div>
+                    <div class="panel-footer">
+                        <button class="btn btn-primary" onclick="sendPostRequest()" value ="NFT1">Cancel Listing</button>
+                    </div>
+                    <div id="response"></div>
+
+<script>
+function sendPostRequest() {
+  var formData = new FormData();
+  formData.append('nft_id', 'NFT1');
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'http://localhost:8083/nft/sell/cancelListing/3', true);
+  xhr.onload = function() {
+    if (this.status == 200) {
+      // Successful POST request
+      document.getElementById('response').innerHTML = this.responseText;
+    } else {
+      // Some error occurred
+      document.getElementById('response').innerHTML = 'Error: ' + this.status;
+    }
+  };
+  xhr.onerror = function() {
+    // Network error
+    document.getElementById('response').innerHTML = 'Error: Network Error';
+  };
+  xhr.send(formData);
+}
+</script>
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+    
+
+</body>
+</html>

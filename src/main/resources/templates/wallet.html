@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    
+        <head>
+    <title>Bootstrap NavBar Example</title>
+    <meta charset="utf-8" />
+    <!-- Include bootstrap, CSS and jQuery CDN -->
+    <meta name="viewport" content=
+        "width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href=
+"https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>
+    <script src=
+"https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js">
+    </script>
+</head>
+    
+    <body>
+    <!-- Add <nav> tag with .navbar and
+         .navbar-default class -->
+    <nav class="navbar navbar-default">
+  
+        <!-- Add navbar content -->
+        <div class="container-fluid">
+  
+            <!-- Include .navbar-header class 
+                 in <div>  (optional)-->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="Landing">
+                    NFT Marketplace
+                </a>
+            </div>
+  
+            <!-- Include navbar list -->
+            <ul class="nav navbar-nav">
+                <li><a href="/test">
+                    Home
+                </a></li>
+                <li><a href="/wallet">Wallet</a></li>
+                <li><a href="nft/viewAll">My NFTs</a></li>
+                <li><a href="/createNFT">Create NFT</a></li>
+                <li><a href="/Buy">Buy NFT</a></li>
+                <li><a href="/logout">Log Out</a></li>
+
+            </ul>
+        </div>
+    </nav>
+  
+
+  <div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <h2>Currency Type</h2>
+        </div>
+        <div class="col-sm-6">
+            <h2>Balance</h2>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <h4>BTC</h4>
+        </div>
+        <div class="col-sm-6">
+             <h4><span th:text="${btcBalance}"></span></h4>
+            
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <h4>ETH</h4>
+        </div>
+        <div class="col-sm-6">
+           <h4><span th:text="${etcBalance}"></span></h4>
+           
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#depositForm">
+                Deposit
+            </button>
+        </div>
+        <div class="col-sm-6">
+            <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#withdrawForm">
+                Withdraw
+            </button>
+        </div>
+    </div>
+</div>
+
+
+    <div class="modal fade" id="depositForm" tabindex="-1" role="dialog" aria-labelledby="membershipFormLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+  
+          <div class="modal-content">
+            <div class="modal-header">
+  
+              <h3 class="modal-title" id="membershipFormLabel">Deposit</h3>
+  
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+  
+            <div class="modal-body">
+                <form id="formDeposit" class="membership-form webform" th:action="@{/crypto/deposit}" th:object="${createdCrypto}" method="post">
+                    
+                    <label for="currencyType">Choose the type:</label>
+                    <select id="currencyType" name="type" th:field="*{currencyType}">
+                        <option value="BTC">BTC</option>
+                        <option value="ETH">ETH</option>
+                   </select>
+
+                    <input type="text" id ="balance" class="form-control" name="balance" placeholder="amount" th:field="*{balance}">
+                    <button type="submit" class="form-control" id="submit" name="deposit">Deposit</button>
+                </form>
+                
+                
+            </div>
+  
+            <div class="modal-footer"></div>
+  
+          </div>
+        </div>
+    </div>
+
+<div class="modal fade" id="withdrawForm" tabindex="-1" role="dialog" aria-labelledby="membershipFormLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+  
+          <div class="modal-content">
+            <div class="modal-header">
+  
+              <h3 class="modal-title" id="membershipFormLabel">Withdraw</h3>
+  
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+  
+            <div class="modal-body">
+                <form id="formDeposit" class="membership-form webform" th:action="@{/crypto/withdraw}" th:object="${createdCrypto}" method="post">
+                    
+                    <label for="currencyType">Choose the type:</label>
+                    <select id="currencyType" name="type" th:field="*{currencyType}">
+                        <option value="BTC">BTC</option>
+                        <option value="ETH">ETH</option>
+                   </select>
+
+                    <input type="text" id ="balance" class="form-control" name="balance" placeholder="amount" th:field="*{balance}">
+                    <button type="submit" class="form-control" id="submit" name="deposit">Withdraw</button>
+                </form>
+            </div>
+  
+            <div class="modal-footer"></div>
+  
+          </div>
+        </div>
+    </div>
+
+</body>
+</html>
