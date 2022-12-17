@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	
-		<head>
-    <title>Bootstrap NavBar Example</title>
-    <meta charset="utf-8" />
-    <!-- Include bootstrap, CSS and jQuery CDN -->
-    <meta name="viewport" content=
-        "width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href=
-"https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
-    <script src=
-"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+
+<head>
+<title>Bootstrap NavBar Example</title>
+<meta charset="utf-8" />
+<!-- Include bootstrap, CSS and jQuery CDN -->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
     </script>
-    <script src=
-"https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js">
     </script>
 </head>
-	
-	<body>
-    <!-- Add <nav> tag with .navbar and
+
+<body>
+	<!-- Add <nav> tag with .navbar and
          .navbar-default class -->
-    <nav class="navbar navbar-default">
-  <nav class="navbar navbar-default">
-  
-        <!-- Add navbar content -->
-        <div class="container-fluid">
-  
-            <!-- Include .navbar-header class 
+	
+		<nav class="navbar navbar-default">
+
+			<!-- Add navbar content -->
+			<div class="container-fluid">
+
+				<!-- Include .navbar-header class 
                  in <div>  (optional)-->
+
             <div class="navbar-header">
                 <a class="navbar-brand" href="Landing">
                     NFT Marketplace
@@ -40,73 +40,73 @@
                     Home
                 </a></li>
                 <li><a href="/wallet">Wallet</a></li>
-                <li><a href="nft/viewAll">My NFTs</a></li>
+                <li><a href="/nft/viewAll">My NFTs</a></li>
                 <li><a href="/createNFT">Create NFT</a></li>
-                <li><a href="/Buy">Buy NFT</a></li>
+                <li><a href="/nft/buy/viewListings">Buy NFT</a></li>
                 <li><a href="/logout">Log Out</a></li>
 
-            </ul>
-        </div>
-    </nav>
-  
-    <!-- Sample page content -->
-    <!-- <div class="container">
+				
+<!-- Include navbar list -->
+				
+
+				</ul>
+			</div>
+		</nav>
+
+		<!-- Sample page content -->
+		<!-- <div class="container">
         <p>CREATE NFT page</p>
         <p th:text="${nft}" />
     </div>
      -->
 
-     <div class="container">
-        <h2>Create NFT</h2>
-        <form action="/createNFT" method="post">
-            <div>
-            <div class="form-group
+		<div class="container">
+			<h2>Create NFT</h2>
+			<form th:action="@{/nft/create}" th:object="${createdNft}" method="post"> 
+				<div>
+					<div class="form-group
                 col-md-6">
-                <label for="name">Name:</label>
-                <input type="text" class=
-                    "form-control" id="name"
-                    placeholder="Enter name"
-                    name="name">
-            </div>
-            <div class="form-group
+						<label for="name">Name:</label>
+						 <input type="text" th:field="*{name}" 
+							class="form-control" id="name" placeholder="Enter name"
+							name="name">
+					</div>
+					<div class="form-group
                 col-md-6">
-                <label for="type">Type:</label>
-                <input type="text" class=
-                    "form-control" id="type"
-                    placeholder="Enter type"
-                    name="type">
-            </div>
-            <div class="form-group
+						<label for="type">Type:</label> 
+						<input type="text" th:field="*{type}"
+							class="form-control" id="type" placeholder="Enter type"
+							name="type">
+					</div>
+					<div class="form-group
                 col-md-6">
-                <label for="description">Description:</label>
-                <input type="text" class=
-                    "form-control" id="description"
-                    placeholder="Enter description"
-                    name="description">
-            </div>
-            <div class="form-group
+						<label for="description">Description:</label>
+						 <input type="text" th:field="*{description}" 
+							class="form-control" id="description"
+							placeholder="Enter description" name="description">
+					</div>
+					<div class="form-group
                 col-md-6">
-                <label for="imageUrl">Image URL:</label>
-                <input type="text" class=
-                    "form-control" id="imageUrl"
-                    placeholder="Enter image URL"
-                    name="imageUrl">
-            </div>
-            <div class="form-group
+						<label for="imageUrl">Image URL:</label> 
+						<input type="text" th:field="*{imageUrl}" 
+							class="form-control" id="imageUrl" placeholder="Enter image URL"
+							name="imageUrl">
+					</div>
+					<div class="form-group
                 col-md-6">
-                <label for="assetUrl">Asset URL:</label>
-                <input type="text" class=
-                    "form-control" id="assetUrl"
-                    placeholder="Enter asset URL"
-                    name="assetUrl">
-            </div>
-            </div>
-        
-            <div>
-            <button type="submit" class=
-                "btn btn-default">Submit1</button>
-                <div>
-        </form>
-    </div>
+						<label for="assetUrl">Asset URL:</label> 
+						<input type="text" th:field="*{assetUrl}" 
+							class="form-control" id="assetUrl" placeholder="Enter asset URL"
+							name="assetUrl">
+					</div>
+				</div>
+
+				<div class="form-group col-md-6">
+					<button type="submit" class="btn btn-default">Submit</button>
+				</div>
+			</form>
+		</div>
+		
+		
 </body>
 </html>

@@ -1,119 +1,90 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    
-        <head>
-    <title>Bootstrap NavBar Example</title>
-    <meta charset="utf-8" />
-    <!-- Include bootstrap, CSS and jQuery CDN -->
-    <meta name="viewport" content=
-        "width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href=
-"https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
-    <script src=
-"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+
+<head>
+<title>Bootstrap NavBar Example</title>
+<meta charset="utf-8" />
+<!-- Include bootstrap, CSS and jQuery CDN -->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
     </script>
-    <script src=
-"https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js">
     </script>
 </head>
-    
-    <body>
-    <!-- Add <nav> tag with .navbar and
+
+<body>
+	<!-- Add <nav> tag with .navbar and
          .navbar-default class -->
-    <nav class="navbar navbar-default">
-  
-        <!-- Add navbar content -->
-        <div class="container-fluid">
-  
-            <!-- Include .navbar-header class 
+	<nav class="navbar navbar-default">
+
+		<!-- Add navbar content -->
+		<div class="container-fluid">
+
+			<!-- Include .navbar-header class 
                  in <div>  (optional)-->
-            <div class="navbar-header">
-                <a class="navbar-brand" href="Landing">
-                    NFT Marketplace
-                </a>
-            </div>
-  
-            <!-- Include navbar list -->
-            <ul class="nav navbar-nav">
-                <li><a href="/test">
-                    Home
-                </a></li>
-                <li><a href="/wallet">Wallet</a></li>
-                <li><a href="nft/viewAll">My NFTs</a></li>
+			<div class="navbar-header">
+				<a class="navbar-brand" href="Landing"> NFT Marketplace </a>
+			</div>
+
+			<!-- Include navbar list -->
+			<ul class="nav navbar-nav">
+				<li><a href="/test"> Home </a></li>
+				<li><a href="/wallet">Wallet</a></li>
+                <li><a href="/nft/viewAll">My NFTs</a></li>
                 <li><a href="/createNFT">Create NFT</a></li>
-                <li><a href="/Buy">Buy NFT</a></li>
+                <li><a href="/nft/buy/viewListings">Buy NFT</a></li>
                 <li><a href="/logout">Log Out</a></li>
 
-            </ul>
-        </div>
-    </nav>
+			</ul>
+		</div>
+	</nav>
 
-    <!-- Sample page content
+	<!-- Sample page content
     <div class="container">
         
     </div> -->
 
-    <!-- NFT landing page -->
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">NFT 1</div>
-                    <div class="panel-body
+	<!-- NFT landing page -->
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-4" th:each="oneNftb: ${nftsbuy}">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						NFTID :<span th:text="${oneNftb.nftId}"></span>
+					</div>
+					<div class="panel-body
                         text-center">
-                        <a data-toggle="collapse" href="#collapse1">
-                            <img src="https://www.w3schools.com/bootstrap/paris.jpg" class="img-responsive" style="width:100%" alt="Image">
-                        </a>
-                    </div>
-                    <div id="collapse1" class="panel-collapse collapse">
-                    <div class="panel-body
-                    ">NFT 1 details</div>
-                </div>
-                    <div class="panel-footer">
-                        <button class="btn btn-primary">Buy</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">NFT 2</div>
-                    <div class="panel-body
-                        text-center">
-                        <a data-toggle="collapse" href="#collapse2">
-                        <img src="https://www.w3schools.com/bootstrap/paris.jpg" class="img-responsive" style="width:100%" alt="Image">
-                    </a>
-                    </div>
-                    <div id="collapse2" class="panel-collapse collapse">
-                    <div class="panel-body
-                    ">NFT 2 details</div>
-                </div>
-                    <div class="panel-footer">
-                        <button class="btn btn-primary">Buy</button>
+						<a> <img
+							src="https://www.w3schools.com/bootstrap/paris.jpg"
+							class="img-responsive" style="width: 100%" alt="Image">
+						</a>
+					</div>
+					<div>
+						<div class="panel-body
+                    ">
+							<p th:text="${oneNftb.description}" />
+							<span th:text="${oneNftb.listPrice}"></span>
+							<bold>
+							<span th:text="${oneNftb.currencyType}"></span></bold>
+							<p th:text="${oneNftb.listingType}" />
+						</div>
+					</div>
+					<form th:action="@{/nft/buy/item}" method="post">
+						<div class="panel-footer">
+						<button type="submit" class="btn btn-primary">Buy</button>
+					</div>
+					</form>
+					
+				</div>
+			</div>
 
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">NFT 3</div>
-                    <div class="panel-body
-                        text-center">
-                        <a data-toggle="collapse" href="#collapse3">
-                        <img src="https://www.w3schools.com/bootstrap/paris.jpg" class="img-responsive" style="width:100%" alt="Image">
-                    </a>
-                    </div>
-                    <div id="collapse3" class="panel-collapse collapse">
-                    <div class="panel-body
-                    ">NFT 3 details</div>
-                </div>
-                    <div class="panel-footer">
-                        <button class="btn btn-primary">Buy</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
+		</div>
+	</div>
+
 
 </body>
 </html>

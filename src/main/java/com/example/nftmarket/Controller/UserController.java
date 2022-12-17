@@ -5,9 +5,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.nftmarket.Entity.CryptoCurrencies;
+import com.example.nftmarket.Entity.NFT;
 import com.example.nftmarket.Entity.Users;
 import com.example.nftmarket.Entity.Wallet;
 import com.example.nftmarket.Repository.UsersRepo;
+import com.example.nftmarket.Service.DashboardService;
 import com.example.nftmarket.Service.CryptoCurrencyService;
 import com.example.nftmarket.UserDetails.UserServices;
 
@@ -32,6 +34,9 @@ public class UserController {
 	
 	@Autowired
 	private UsersRepo userRepo;
+	
+	@Autowired
+    private DashboardService dashboardService;
 
     @Autowired
     private CryptoCurrencyService cryptoCurrencyService;
@@ -45,7 +50,8 @@ public class UserController {
     }
     
     @GetMapping(value = "/createNFT")
-    public String createNFT() {
+    public String createNFT(Model model) {
+        model.addAttribute("createdNft", new NFT());
         return "createNFT";
     }
     
@@ -56,7 +62,10 @@ public class UserController {
     
     
     @GetMapping(value = "/test")
-    public String welcometest() {
+    public String welcometest(Model model) {
+        ResponseEntity<?> data = dashboardService.getDashboard();
+        System.out.println(data);
+        model.addAttribute("transaction",data);
         return "Landing";
     }
     

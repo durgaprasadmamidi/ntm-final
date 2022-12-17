@@ -39,9 +39,9 @@
                     Home
                 </a></li>
                 <li><a href="/wallet">Wallet</a></li>
-                <li><a href="nft/viewAll">My NFTs</a></li>
+                <li><a href="/nft/viewAll">My NFTs</a></li>
                 <li><a href="/createNFT">Create NFT</a></li>
-                <li><a href="/Buy">Buy NFT</a></li>
+                <li><a href="/nft/buy/viewListings">Buy NFT</a></li>
                 <li><a href="/logout">Log Out</a></li>
 
             </ul>
@@ -102,7 +102,7 @@
 								<div class="modal-content">
 									<div class="modal-header">
 
-										<h3 class="modal-title" id="membershipFormLabel">Deposit</h3>
+										<h3 class="modal-title" id="membershipFormLabel">Selling details</h3>
 
 										<button type="button" class="close" data-dismiss="modal"
 											aria-label="Close">
@@ -114,17 +114,23 @@
 										<form class="membership-form webform" th:action="@{/nft/sell}" th:object="${nfti}"
 											role="form" method="POST">
 											
-											<!-- <input type="hidden" id="nftId" th:field="*{nftId}" name="nftId" value="1"> -->
-
-											<label for="cars">Choose the type:</label> <select id="cars"
-												name="cars">
-												<option value="volvo">BTC</option>
-												<option value="saab">ETH</option>
+											<input type="number" id="nftId" th:field="*{nftId}" name="nftId" th:value=1>
+											<label for="sale">Choose the type:</label> <select id="sale" th:field="*{listingType}"
+												name="sale">
+												<option th:value="Auction">Auction</option>
+												<option th:value="Priced">Priced</option>
 											</select> 
+											
+											<label for="cars">Choose Sale type:</label> <select id="cars" th:field="*{currencyType}"
+												name="cars">
+												<option  th:value="BTC">BTC</option>
+												<option  th:value="ETH">ETH</option>
+											</select> 
+											
 											<input type="text" th:field = "*{listPrice}" class="form-control"  name="amount"
 												placeholder="amount">
 											<button type="submit" class="form-control" id="submit-button"
-												name="submit">Deposit</button>
+												name="submit">sell</button>
 										</form>
 									</div>
 
@@ -216,9 +222,7 @@
     	<p th:text="${nft.assetUrl}"/>
     </div> -->
     
-    <div>
-    	<p>nftz page</p>
-    </div>
+    
     
     
     

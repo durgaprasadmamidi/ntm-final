@@ -254,7 +254,7 @@ public class NFTService {
                 entities.add(entity);
             }
 
-            return new ResponseEntity<>(entities.toString(), HttpStatus.OK);
+            return new ResponseEntity<>(unSoldNfts, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>("Operation failed", HttpStatus.BAD_REQUEST);
