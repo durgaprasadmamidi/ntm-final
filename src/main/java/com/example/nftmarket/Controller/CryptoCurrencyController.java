@@ -66,7 +66,7 @@ public class CryptoCurrencyController {
         Users user = userRepo.findByEmail(principal.getName());
         model.addAttribute("createdCrypto", new CryptoCurrencies());
         ResponseEntity<?> created =  cryptoCurrencyService.depositCrypto(createdCrypto.getCurrencyType(), createdCrypto.getBalance(), user);
-        return new RedirectView("/crypto/viewAll");
+        return new RedirectView("/wallet");
     }
     
     @PostMapping(value = "/withdraw")
@@ -79,7 +79,7 @@ public class CryptoCurrencyController {
         Users user = userRepo.findByEmail(principal.getName());
         model.addAttribute("createdCrypto", new CryptoCurrencies());
         ResponseEntity<?> created =  cryptoCurrencyService.withdrawCrypto(createdCrypto.getCurrencyType(), createdCrypto.getBalance(), user);
-        return new RedirectView("/crypto/viewAll");
+        return new RedirectView("/wallet");
     }
 
 //    @PostMapping(value = "/withdraw")

@@ -77,14 +77,23 @@ public class UserController {
         System.out.println("Is there a user in wallet");
         System.out.println(user);
         ResponseEntity<?> crypto =  cryptoCurrencyService.getCryptosOfUser(user);
-        List<CryptoCurrencies> cryptoList = (List<CryptoCurrencies>)crypto.getBody();
+        //List<CryptoCurrencies> cryptoList = (List<CryptoCurrencies>)crypto.getBody();
+        Wallet wallet = user.getWallet();
+        List<CryptoCurrencies> cryptoCurrenciesList = wallet.getCryptoCurrenciesList();
         System.out.println("Do i have a cryptolist");
-        for(CryptoCurrencies cr: cryptoList) {
-        	
-        	if( cr.getCurrencyType() == "BTC")
+        
+        
+        for(CryptoCurrencies cr: cryptoCurrenciesList) {
+        	System.out.println("Do i have a cryptolist---"+cr.getBalance());
+        	if( cr.getCurrencyType().equalsIgnoreCase("BTC")) {
+        		//model.addAttribute("btcBalance",Float.toString(cr.getBalance()));
         		model.addAttribute("btcBalance",cr.getBalance());
-        	if( cr.getCurrencyType() == "ETH")
+        	}
+        	if( cr.getCurrencyType().equalsIgnoreCase("ETH")) {
         		model.addAttribute("etcBalance",cr.getBalance());
+        	}
+        		
+        	//System.out.println("Do i have ---"+btcBalance);
    
         }
     	
